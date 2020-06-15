@@ -10,7 +10,7 @@ properties([
       multiSelectDelimiter: ',', name: 'STAGES_TO_BE_EXECUTED',
       quoteValue: false, saveJSONParameterToFile: false,
       type: 'PT_MULTI_SELECT',
-      value: 'Full Pack, Smoke Pack, Main Pack, Special Pack, -------------, Stage1, Stage2, Stage3, Stage4, Stage5, Stage6, Stage7',
+      value: 'Full Pack,Smoke Pack,Main Pack,Special Pack, -------------,Stage1,Stage2,Stage3,Stage4,Stage5,Stage6,Stage7',
       visibleItemCount: 12)
   ])
 ])
@@ -79,7 +79,7 @@ def generateExecuteStagesList(String packName) {
     stagesToBeExecuted = jobPacks[packName]
   }
   else {
-    def selectedStages = env.STAGES_TO_BE_EXECUTED.split(', ')
+    def selectedStages = env.STAGES_TO_BE_EXECUTED.split(',')
 
     stagesToBeExecuted = jobPacks[packName].findAll { selectedStages.contains(it) }
   }
